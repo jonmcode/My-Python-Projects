@@ -1,0 +1,182 @@
+#Defining the Calorie Calculator
+def calorie_calculator():
+    #Program Introduces itself and its purpose
+
+    print("Hello! Welcome to the Calorie Calculator. "
+          " This calculator will figure out your calories needed based one gender, age, weight, and height."
+          " It will also find the calories needed depending on what the User is trying to do for their weight such as maintain, lose, or, gain weight. "
+          " You're BMI is calculated and given.")
+
+
+    #Program aks for Information about the user and gathers it for it to be later used in the calorie calculator.
+
+    user_name = input("What is your name?:")
+    print(f"Nice to meet you {user_name}!")
+    user_gender = input(f"What is your gender {user_name}?")
+    user_age = int(input("How old are you?"))
+    user_weight = float(input("What is your weight? (Provide your answer in lbs:)"))
+    user_height = float(input("What is your height? (Please provide you answer in inches):"))
+
+    #Program calculates user's bmi based on user input on user_weight and user_height and determines if the user as at a healthy weight or not.
+
+    user_bmi = (user_weight * 703) // (user_height ** 2)
+    if user_bmi >= 18.2 and user_bmi <= 25.6:
+        print(f"You are at a healthy weight {user_name}. Staying within the 18.2-25.6 BMI range is considered healthy."
+              f" This range can be maintained by maintaining healthy eating habits or exercising.")
+    elif user_bmi > 25.6:
+        print(f"You are overweight {user_name}. Re-consider your eating habits of food by eating less and try to lose some pounds."
+              f" On top of that try to include some exercise into some of your days during the week."
+              f" This what help you to be within the healthy BMI range of 18.2-25.6")
+    elif user_bmi<18.2:
+        print(f"You are underweight {user_name}. Re-consider your eating habits of by eating more or putting on muscle by weight-lifting to gain some pounds."
+                  f" That will help you to be within the healthy BMI range of 18.2-25.6")
+
+    #Male Part for Calculations of Calories using the mifflin-st jeor formula
+
+    if user_gender.casefold() == "male":
+        user_bmr = (66.47 + (6.24*user_weight) + (12.7*user_height) - (6.76*user_age))
+        #Program recalls users BMI and asks if User wants to maintain their weight, gain weight, or lose some weight
+        user_weight_decision=input(f"Ok, {user_name}, your BMI is currently {user_bmi}. "
+                                   f" Do you desire to maintain your weight of {user_weight}, or lose some pounds, or gain some pounds?"
+                                   f" (Answer by saying either 'Maintain', 'Lose', or 'Gain'.):")
+
+        #Program calculates calories for maintaining weight based on after asking users activity
+        if user_weight_decision.casefold() == "maintain":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you? "
+                                  f" Are you Not active, Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_maintain_calories = user_bmr * 1.15
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_maintain_calories = user_bmr*1.3
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_maintain_calories = user_bmr*1.4
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_maintain_calories = user_bmr*1.615
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_maintain_calories = user_bmr*1.63
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+
+        #Program calculates calories for losing weight based on after asking users activity
+        elif user_weight_decision.casefold() == "lose":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you?"
+                                  f" Are you Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_lose_calories = (user_bmr * 1.15)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_lose_calories = (user_bmr * 1.3)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_lose_calories = (user_bmr * 1.4)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_lose_calories = (user_bmr * 1.615)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_lose_calories = (user_bmr * 1.63)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+
+        #Program calculates calories for gaining weight based on after asking users activity
+        elif user_weight_decision.casefold() == "gain":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you?"
+                                  f" Are you Not active, Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_gain_calories = (user_bmr * 1.15) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_gain_calories = (user_bmr * 1.3) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_gain_calories = (user_bmr * 1.4) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_gain_calories = (user_bmr * 1.615) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_gain_calories = (user_bmr * 1.63) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+
+        #If User inputs an invalid answer for the user_weight_decision, the program does not continue forward and prints out the message below.
+        else:
+            print("Your answer on weight desire is not a valid answer, please try again to continue forward. Answer can be maintain, lose, or gain.")
+
+    #Female Part for Calculations of Calories using the mifflin-st jeor formula
+
+    elif user_gender.casefold() == "female":
+        user_bmr = (655 + (4.34*user_weight) + (4.7*user_height) - (4.7*user_age))
+        #Program recalls users BMI and asks if User wants to maintain their weight, gain weight, or lose some weight
+        user_weight_decision=input(f"Ok, {user_name}, your BMI is currently {user_bmi}. Do you desire to maintain your weight of {user_weight}, or lose some pounds, or gain some pounds?, (Answer by saying either 'Maintain', 'Lose', or 'Gain'.):")
+
+        #Program calculates calories for maintaining weight based on after asking users activity
+        if user_weight_decision.casefold() == "maintain":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you?"
+                                  f" Are you Not active, Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_maintain_calories = user_bmr * 1.15
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_maintain_calories = user_bmr*1.3
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_maintain_calories = user_bmr*1.45
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_maintain_calories = user_bmr*1.615
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_maintain_calories = user_bmr*1.63
+                print(f"To maintain your weight of {user_weight}lbs {user_name}, you must consume around {user_maintain_calories.__round__(0)} calories daily")
+
+        #Program calculates calories for losing weight based on after asking users activity
+        elif user_weight_decision.casefold() == "lose":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you?"
+                                  f" Are you Not active, Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_lose_calories = (user_bmr * 1.15)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_lose_calories = (user_bmr * 1.3)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_lose_calories = (user_bmr * 1.45)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_lose_calories = (user_bmr * 1.615)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_lose_calories = (user_bmr * 1.63)-750
+                print(f"To decrease your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_lose_calories.__round__(0)} calories daily")
+
+        #Program calculates calories for gaining weight based on after asking users activity
+        elif user_weight_decision.casefold() == "gain":
+            user_activity = input(f"Ok, {user_name}. I'd like to ask, how active are you? "
+                                  f" Are you Not active, Lightly active, Moderately active, Very active, or Extremely active?:")
+            if user_activity.casefold() == "not active": #not working out
+                user_gain_calories = (user_bmr * 1.15) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "lightly active": #working out 1-3 times a week
+                user_gain_calories = (user_bmr * 1.3) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "moderately active": #working out 4-5 times a week
+                user_gain_calories = (user_bmr * 1.45) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "very active": #working out 6-7 times a week
+                user_gain_calories = (user_bmr * 1.615) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+            if user_activity.casefold() == "extremely active": #exercising daily or having an extremely physical job
+                user_gain_calories = (user_bmr * 1.63) + 750
+                print(f"To add to your weight of {user_weight}lbs by 1.5lbs per week {user_name}, you must consume around {user_gain_calories.__round__(0)} calories daily")
+
+        #If User inputs an invalid answer for the user_weight_decision, the program does not continue forward and prints out the message below.
+        else:
+            print("Your answer on weight desire is not a valid answer, please try again to continue forward. Answer can be maintain, lose, or gain.")
+
+    #If User inputs an invalid answer for the user_gender, the program does not continue forward and prints out the message below.
+    else:
+        print("Your answer on gender is not a valid answer, please try again to continue forward. Answer can be male or female.")
+(calorie_calculator())
+#End of Program
