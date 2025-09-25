@@ -1,0 +1,38 @@
+import sys
+from string import digits
+
+first_4=(input("Please enter a 4 digit number: "))
+if len(first_4) != 4 or not first_4.isdigit():
+    print("That is not a valid number, please try again and enter a 4 digit number.")
+    sys.exit()
+second_4=(input("Please enter another 4 digit number: "))
+if len(second_4) != 4 or not Csecond_4.isdigit():
+    print("That is not a valid number, please try again and enter a 4 digit number.")
+    sys.exit()
+third_4=(input("Please enter another 4 digit number: "))
+if len(third_4) != 4 or not third_4.isdigit():
+    print("That is not a valid number, please try again and enter a 4 digit number.")
+    sys.exit()
+fourth_4=(input("Please enter another 4 digit number: "))
+if len(fourth_4) != 4 or not fourth_4.isdigit():
+    print("That is not a valid number, please try again and enter a 4 digit number.")
+    sys.exit()
+CVC_3_Digit=(input("Please enter a 3 digit number: "))
+if len(CVC_3_Digit) != 3 or not CVC_3_Digit.isdigit():
+    print("That is not a valid number, please try again and enter a 3 digit number.")
+    sys.exit()
+
+
+
+
+
+
+Credit_Card_Creator = (f"{first_4}-{second_4}-{third_4}-{fourth_4}")
+print(CVC_3_Digit)
+
+print(f"Your new credit card number is XXXX-XXXX-XXXX-{Credit_Card_Creator[-4::]}")
+continue_on_or_not = input("Would you like to reveal the full credit card number along with the CVV?: ")
+if continue_on_or_not ==  "yes" or "y":
+    print(f"Your credit card number is {Credit_Card_Creator}, and your CVV is {CVC_3_Digit}")
+elif continue_on_or_not == "no" or "n":
+    print("Thank you! Goodbye!")
