@@ -1,0 +1,36 @@
+movies = [
+    ("Eternal Sunshine of the Spotless Mind", 20000000),
+    ("Memento", 9000000),
+    ("Requiem for a Dream", 4500000),
+    ("Pirates of the Caribbean: On Stranger Tides", 379000000),
+    ("Avengers: Age of Ultron", 365000000),
+    ("Avengers: Endgame", 356000000),
+    ("Incredibles 2", 200000000)
+]
+
+new_movies = int(input("How many movies would you like to add?: "))
+
+for _ in range(new_movies):
+    name = input("Enter a new movie's name: ")
+    budget = int(input("Enter your budget: "))
+    new_movie = (name, budget)
+    movies.append(new_movie)
+
+
+budget_total = 0
+counter = 0
+for movie in movies:
+    budget_total += movie[1]
+for movie in movies:
+    counter += 1
+average_movie_budget = budget_total / counter
+print(f"The average budget for movies is {average_movie_budget:.2f}.")
+for movie in movies:
+    if movie[1] > average_movie_budget:
+        greater_than = movie[1] - average_movie_budget
+        print(f"{movie[0]}'s budget is greater than the average budget by {greater_than:.2f}.")
+
+
+
+
+
