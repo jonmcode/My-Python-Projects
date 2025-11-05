@@ -6,7 +6,7 @@ if len(first_4) != 4 or not first_4.isdigit():
     print("That is not a valid number, please try again and enter a 4 digit number.")
     sys.exit()
 second_4=(input("Please enter another 4 digit number: "))
-if len(second_4) != 4 or not Csecond_4.isdigit():
+if len(second_4) != 4 or not second_4.isdigit():
     print("That is not a valid number, please try again and enter a 4 digit number.")
     sys.exit()
 third_4=(input("Please enter another 4 digit number: "))
