@@ -1,0 +1,116 @@
+#  INITIAL DATA
+Sales = [("01-23-2025", "Car GPS Electronic Systems", 50, 50000.00)]
+Expenses = [("03-22-2025", "Store Utilities", 392.59)]
+Sales_Returns = [("03-22-2025", "Car Sound System Set", 20, 2500.00)]
+Inventory = [("03-22-2025", "Car Sound System Set", 20, 2500.00),
+             ("05-24-2025", "Car Headlight Bulbs", 100000, 140562.32),
+             ("05-25-2025", "Michelin Pilot Sport 4S", 120, 4321.25),
+             ("05-26-2025", "JLT Series II Cold Air Intake", 250, 80247.5),
+             ("05-27-2025", "Twin Screw Super Charger", 150, 625,240.24),
+             ("05-28-2025", "Centrifugal Super Charger (Pro Charger", 25, 125,552.11),
+             ("05-28-2025", "TSP Stage 3 LS3 N/A Camshaft", 400, 164,396.89)
+             ]
+
+#  WELCOME MESSAGE
+print("Welcome to your Car Auto Store Business Dashboard Tracker!")
+
+
+#  INITIAL TOTALS 
+total_sales_amount = sum(sale[3] for sale in Sales)
+total_sales_quantity = sum(sale[2] for sale in Sales)
+
+total_expenses = sum(expense[2] for expense in Expenses)
+
+total_sales_returns = sum(r[3] for r in Sales_Returns)
+total_sales_returns_quantity = sum(r[2] for r in Sales_Returns)
+
+total_inventory_value = sum(item[3] for item in Inventory)
+
+
+#  ASK USER IF THEY WANT TO ADD DATA 
+add_more = input("Do you want to add more data? (y/n): ").lower()
+
+if add_more == "y":
+    data_type = input("What type of data: Sales, Expenses, Sales Returns, Inventory? ").strip()
+
+    #  SALES 
+    if data_type == "Sales":
+        n = int(input("How many sales entries do you want to add?: "))
+        for _ in range(n):
+            date = input("Sales date: ")
+            product = input("Product sold: ")
+            qty = int(input("Quantity sold: "))
+            amount = float(input("Total amount earned from sale: "))
+
+            new_entry = (date, product, qty, amount)
+            Sales.append(new_entry)
+
+        # Recalculate totals
+        total_sales_amount = sum(sale[3] for sale in Sales)
+        total_sales_quantity = sum(sale[2] for sale in Sales)
+
+    #  EXPENSES 
+    elif data_type == "Expenses":
+        n = int(input("How many expense entries do you want to add?: "))
+        for _ in range(n):
+            date = input("Expense date: ")
+            description = input("Expense description: ")
+            cost = float(input("Expense amount: "))
+
+            new_entry = (date, description, cost)
+            Expenses.append(new_entry)
+
+        total_expenses = sum(expense[2] for expense in Expenses)
+
+    #  SALES RETURNS 
+    elif data_type == "Sales Returns":
+        n = int(input("How many sales return entries do you want to add?: "))
+        for _ in range(n):
+            date = input("Return date: ")
+            product = input("Product returned: ")
+            qty = int(input("Quantity returned: "))
+            amount = float(input("Return value refunded: "))
+
+            new_entry = (date, product, qty, amount)
+            Sales_Returns.append(new_entry)
+
+        total_sales_returns = sum(r[3] for r in Sales_Returns)
+        total_sales_returns_quantity = sum(r[2] for r in Sales_Returns)
+
+    #  INVENTORY 
+    elif data_type == "Inventory":
+        n = int(input("How many inventory entries do you want to add?: "))
+        for _ in range(n):
+            date = input("Inventory date: ")
+            product = input("Product name: ")
+            qty = int(input("Quantity in stock: "))
+            value = float(input("Total inventory value: "))
+
+            new_entry = (date, product, qty, value)
+            Inventory.append(new_entry)
+
+        total_inventory_value = sum(item[3] for item in Inventory)
+
+
+#  FINAL OUTPUT SUMMARY 
+
+print("\n--------------------------------------------")
+print("📊 BUSINESS DATA SUMMARY")
+print("--------------------------------------------")
+
+print(f"Total Sales Amount: ${total_sales_amount:,.2f}")
+print(f"Total Quantity Sold: {total_sales_quantity}")
+
+print(f"\nTotal Sales Returns Amount: ${total_sales_returns:,.2f}")
+print(f"Total Returned Quantity: {total_sales_returns_quantity}")
+
+print(f"\nTotal Expenses: ${total_expenses:,.2f}")
+
+print(f"\nTotal Inventory Value: ${total_inventory_value:,.2f}")
+
+# PROFIT calculation
+profit = total_sales_amount - total_sales_returns - total_expenses
+
+print("\n--------------------------------------------")
+print(f"💰 Net Profit: ${profit:,.2f}")
+print("--------------------------------------------")
