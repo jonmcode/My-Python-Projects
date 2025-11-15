@@ -12,7 +12,7 @@ Inventory = [("03-22-2025", "Car Sound System Set", 20, 2500.00),
              ]
 
 #  WELCOME MESSAGE
-print("Welcome to your Car Auto Store Business Dashboard Tracker!")
+print("Welcome to your Car Auto Store Business Data Dashboard!")
 
 
 #  INITIAL TOTALS 
