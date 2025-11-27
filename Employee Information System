@@ -1,0 +1,118 @@
+print("Welcome to the Employee Information System")
+
+# LIST OF EMPLOYEES
+employees = [("John Doe", "Finance", "Chief Financial Officer", 240000.00), ("Jane Doe", "HR", "Employee Relations Manager", 120000.00), ("Doe John", "IT", "Chief Information Officer", 200000.000)]
+
+departments = ("Finance", "IT", "HR")
+
+# LIST EMPLOYEE FUNCTION
+def employee_list():
+    print("This is the current list of employees.")
+    print(employees)
+    return
+# Average SALARY Function
+def average_salary():
+    salaries = 0
+    for employee_sal in employees:
+        salaries += employee_sal[3]
+    avg_salary = salaries / len(employees)
+    print("Average Employee Salary is:", " " "$", avg_salary)
+    return
+
+def department_list():
+    print("This is the list of departments.")
+    print(departments)
+    return
+
+def highest_paid_employee():
+    highest = employees[0]
+    for emp in employees:
+        if emp[3] > highest[3]:
+            highest = emp
+    print("Highest Paid Employee:", highest)
+    return
+
+def lowest_paid_employee():
+    lowest = employees[0]
+    for emp in employees:
+        if emp[3] < lowest[3]:
+            lowest = emp
+    print("Lowest Paid Employee:", lowest)
+    return
+
+def employee_dept_list():
+    for employee_dept in employees:
+        if employee_dept[1] == "Finance":
+            print (employee_dept)
+        elif employee_dept[1] == "IT":
+            print (employee_dept)
+        elif employee_dept[1] == "HR":
+            print (employee_dept)
+        else:
+            print ("Employee Department Not Found")
+    return
+
+def add_employee():
+    name = input("What is the name of the employee?: ")
+    dep = input("What is the department of the employee?: ")
+    title = input("What is the job title of the employee?: ")
+    salary = float(input("What is the salary of the employee?: "))
+    employees.append((name, dep, title, salary))
+    print("Employee Added Successfully")
+    print(f"New Employee List is \n "
+          f"{employees}")
+    return
+def employee_summary():
+    print("This is the Employee Summary.")
+    print(f"Employee List is \n {employees}")
+    print(f"The Average Salary of Employees \n {average_salary()}")
+    print(f"The Highest Paid Employee is \n {highest_paid_employee()}")
+    print(f"The Lowest Paid Employee is \n {lowest_paid_employee()}")
+    print(f"The List of Departments is \n {department_list()}")
+    print("Employee Summary Complete")
+    return
+
+# MAIN MENU FOR E.I.S
+while True:
+    print("What would you like to do?")
+    print("1 - Add Employee")
+    print("2 - List Employee")
+    print("3 - Department List")
+    print("4 - Search Employee by Department")
+    print("5 - Average Salary of Employees")
+    print("6 - Highest Paid Employee")
+    print("7 - Lowest Paid Employee")
+    print("8 - Employee Information Summary")
+    print("Q - Quit")
+
+    user_input = input("Enter your choice: ")
+
+    if user_input == "1":
+        add_employee()
+    elif user_input == "2":
+        employee_list()
+    elif user_input == "3":
+        department_list()
+    elif user_input == "4":
+        employee_dept_list()
+    elif user_input == "5":
+        average_salary()
+    elif user_input == "6":
+        highest_paid_employee()
+    elif user_input == "7":
+        lowest_paid_employee()
+    elif user_input == "8":
+        employee_summary()
+    elif user_input.upper() == "Q":
+        print("Quitting Employee Information System....\nGoodbye!")
+        break
+    else:
+        print("Invalid Input, please try again: ")
+
+
+
+
+
+
+
+
